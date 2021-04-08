@@ -1,0 +1,28 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: servicio-deployment
+  labels:
+    app: lineabase
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: lineabase
+  template:
+    metadata:
+      labels:
+        app: lineabase
+    spec:
+      containers:
+        - name: lineabase
+          image: elturcofarid/servicio
+          ports:
+            - containerPort: 8080
+          resources:
+            requests:
+              memory: "350Mi"
+              cpu: "100m"
+            limits:
+              memory: "700Mi"
+              cpu: "850m"
